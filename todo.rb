@@ -26,14 +26,14 @@ helpers do
     list[:todos].select { |todo| !todo[:completed] }.size
   end
 
-  def sort_lists(lists, &block)
+  def sort_lists(lists)
     complete_lists, incomplete_lists = lists.partition { |list| list_complete?(list) }
 
     incomplete_lists.each { |list| yield list, lists.index(list) }
     complete_lists.each { |list| yield list, lists.index(list) }
   end
 
-  def sort_todos(todos, &block)
+  def sort_todos(todos)
     complete_todos, incomplete_todos = todos.partition { |todo| todo[:completed] }
 
     incomplete_todos.each { |todo| yield todo, todos.index(todo) }
